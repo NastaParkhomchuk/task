@@ -2,6 +2,7 @@ class LoginPage {
     get usernameField() {
       return $('#user-name');
     }
+
     
     get passwordField() {
       return $('#password');
