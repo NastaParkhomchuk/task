@@ -1,4 +1,5 @@
 import LoginPage from '../pageobjects/LoginPage';
+/* global browser, $, it, describe, before, after */
 
 describe('Login Form Tests', () => {
     it('UC-1 Test Login form with empty credentials', async () => {

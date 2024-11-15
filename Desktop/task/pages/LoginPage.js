@@ -1,3 +1,5 @@
+/* global browser, $, it, describe, before, after */
+
 class LoginPage {
   get usernameField() { return $('#user-name'); }
   get passwordField() { return $('#password'); } 
