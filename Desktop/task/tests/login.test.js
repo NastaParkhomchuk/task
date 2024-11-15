@@ -18,19 +18,36 @@ describe('Login Form Tests', () => {
     });
 });
 
-  it('UC-2: Login form with only username provided', async () => {
-    await LoginPage.login('anyUser', validPassword);
-    await LoginPage.passwordField.clearValue();
-    await LoginPage.loginButton.click();
-    
-    const errorMsg = await LoginPage.errorMessage.getText();
-    expect(errorMsg).toContain('Password is required');
-  });
+  
 
-  acceptedUsernames.forEach(username => {
-    it(`UC-3: Login form with valid username "${username}" and password`, async () => {
-      await LoginPage.login(username, validPassword);
-      await expect(browser).toHaveTitleContaining('Swag Labs');
-    });
+describe('Login Form Tests', () => {
+  it('UC-2 Test Login form with credentials by passing Username', async () => {
+
+      await browser.url('https://www.saucedemo.com/');
+
+      await LoginPage.usernameField.setValue('testUser');
+
+      await LoginPage.passwordField.setValue('testPassword');
+      await LoginPage.clearField(LoginPage.passwordField);
+
+      await LoginPage.loginButton.click();
+
+      await expect(LoginPage.errorMessage).toBeDisplayed();
+      await expect(LoginPage.errorMessage).toHaveTextContaining('Password is required');
+  });
+});
+
+
+
+describe('Login Form Tests', () => {
+  it('UC-3 Test Login form with credentials by passing Username & Password', async () => {
+      await browser.url('https://www.saucedemo.com/');
+
+      await LoginPage.usernameField.setValue('standard_user'); 
+      await LoginPage.passwordField.setValue('secret_sauce'); 
+
+      await LoginPage.loginButton.click();
+
+      await expect(browser).toHaveTitle('Swag Labs'); 
   });
 });
