@@ -1,4 +1,4 @@
-/* global browser, $, it, describe, before, after */
+/* global browser, $ */
 
 class LoginPage {
   get usernameField() { return $('#user-name'); }

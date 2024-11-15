@@ -242,7 +242,7 @@ exports.config = {
         if (!passed) {
             await browser.takeScreenshot();
         }
-    },
+    }
 
 
     /**
@@ -306,4 +306,4 @@ exports.config = {
     */
     // afterAssertion: function(params) {
     // }
-}
+
