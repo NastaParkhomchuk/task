@@ -1,23 +1,22 @@
-const LoginPage = require('../pages/LoginPage.js');
-const acceptedUsernames = [
-  'standard_user', 'locked_out_user', 'problem_user', 'performance_glitch_user', 'error_user', 'visual_user'
-];
-const validPassword = 'secret_sauce';
+import LoginPage from '../pageobjects/LoginPage';
 
 describe('Login Form Tests', () => {
-  
-  beforeEach(async () => {
-    await browser.url('https://example.com/login'); // Replace with the actual URL
-  });
+    it('UC-1 Test Login form with empty credentials', async () => {
 
-  it('UC-1: Login form with empty credentials', async () => {
-    await LoginPage.login('anyUser', 'anyPass');
-    await LoginPage.clearFields();
-    await LoginPage.loginButton.click();
-    
-    const errorMsg = await LoginPage.errorMessage.getText();
-    expect(errorMsg).toContain('Username is required');
-  });
+        await browser.url('https://www.saucedemo.com/');
+
+        await LoginPage.usernameField.setValue('testUser');
+        await LoginPage.passwordField.setValue('testPassword');
+
+        await LoginPage.clearField(LoginPage.usernameField);
+        await LoginPage.clearField(LoginPage.passwordField);
+        
+        await LoginPage.loginButton.click();
+
+        await expect(LoginPage.errorMessage).toBeDisplayed();
+        await expect(LoginPage.errorMessage).toHaveTextContaining('Username is required');
+    });
+});
 
   it('UC-2: Login form with only username provided', async () => {
     await LoginPage.login('anyUser', validPassword);
