@@ -13,6 +13,11 @@ module.exports = {
     "ecmaVersion": "latest",
     "sourceType": "module"
   },
+  {
+    "parserOptions": {
+        "sourceType": "module",
+    }
+}
   "plugins": ["mocha", "webdriverio"],
   "rules": {
     "no-unused-vars": "warn",

@@ -34,6 +34,7 @@ exports.config = {
     // sessions. Within your capabilities you can overwrite the spec and exclude options in
     // order to group specific specs to a specific capability.
     //
+    
     // First, you can define how many instances should be started at the same time. Let's
     // say you have 3 different capabilities (Chrome, Firefox, and Safari) and you have
     // set maxInstances to 1; wdio will spawn 3 processes. Therefore, if you have 10 spec
@@ -242,7 +243,7 @@ exports.config = {
         if (!passed) {
             await browser.takeScreenshot();
         }
-    }
+}
 
 
     /**
