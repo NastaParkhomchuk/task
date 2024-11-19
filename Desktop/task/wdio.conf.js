@@ -235,6 +235,8 @@ exports.config = {
      */
     // beforeSuite: function (suite) {
     // },
+    /* global browser, document */
+
     /**
      * Function to be executed before a test (in Mocha/Jasmine) starts.
      */

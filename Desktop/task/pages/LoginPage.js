@@ -1,63 +1,39 @@
-// /* global browser, $ */
-
-// class LoginPage {
-//   get usernameField() { return $('#user-name'); }
-//   get passwordField() { return $('#password'); } 
-//   get loginButton() { return $('#login-button'); } 
-//   get errorMessage() { return $('.error-message-container'); }
-  
-//     async login(username, password) {
-//       await this.usernameField.setValue(username);
-//       await this.passwordField.setValue(password);
-//       await this.loginButton.click();
-//     }
-  
-//     async clearField(field) {
-//       await field.click(); 
-//       await browser.keys(['Control', 'a']); 
-//       await browser.keys('Backspace'); 
-//   }
-// }
-
-  
-//   module.exports = new LoginPage();
-const { $ } = require('@wdio/globals')
 const Page = require('./page');
+const { $ } = require('@wdio/globals')
+/* global browser */
 
-/**
- * sub page containing specific selectors and methods for a specific page
- */
 class LoginPage extends Page {
-    /**
-     * define selectors using getter methods
-     */
-    get inputUsername () {
-        return $('#username');
+    // Определение селекторов
+    get usernameField() { return $('#user-name'); }
+    get passwordField() { return $('#password'); }
+    get loginButton() { return $('#login-button'); }
+    get errorMessage() { return $('.error-message-container'); }
+
+    async open() {
+        await browser.url('https://www.saucedemo.com/');
+        console.info('Navigating to the URL: https://www.saucedemo.com/');
     }
 
-    get inputPassword () {
-        return $('#password');
+    async login(username, password) {
+        await this.usernameField.setValue(username);
+        await this.passwordField.setValue(password);
+        console.info(`Entered credentials: username=${username}, password=${password}`);
     }
 
-    get btnSubmit () {
-        return $('button[type="submit"]');
+    async clearPasswordField() {
+        await this.passwordField.clearValue();
+        console.info('Password field cleared');
     }
 
-    /**
-     * a method to encapsule automation code to interact with the page
-     * e.g. to login using username and password
-     */
-    async login (username, password) {
-        await this.inputUsername.setValue(username);
-        await this.inputPassword.setValue(password);
-        await this.btnSubmit.click();
+    async submit() {
+        await this.loginButton.click();
+        console.info('Clicked on Login button');
     }
 
-    /**
-     * overwrite specific options to adapt it to page object
-     */
-    open () {
-        return super.open('login');
+    async getErrorMessage() {
+        const messageText = await this.errorMessage.getText();
+        console.info(`Error message displayed: ${messageText}`);
+        return messageText;
     }
 }
 
