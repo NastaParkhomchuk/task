@@ -150,7 +150,3 @@ describe('Sauce Demo Login Test', () => {
         });
     });
 });
-
-
-// chrome:   npx wdio run wdio.conf.js --capabilities "browserName:chrome"
-// chrome:   npx wdio run wdio.conf.js --capabilities "browserName:MicrosoftEdge"
