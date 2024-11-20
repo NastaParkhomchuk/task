@@ -61,7 +61,7 @@ exports.config = {
                 ],
         },
     }, {
-        browserName: 'edge'
+        browserName: 'MicrosoftEdge'
     }],
 
     // capabilities: [{
