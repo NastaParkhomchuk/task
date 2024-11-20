@@ -19,6 +19,7 @@ const users = {
         username: "standard_user",
         password: "",
     }
+    
 };
 
 module.exports = users;

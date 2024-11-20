@@ -1,13 +1,14 @@
 const Page = require('../test/pageobjects/page');
 const { $ } = require('@wdio/globals')
-/* global browser */
+/* global browser, document */
 
 class LoginPage extends Page {
     // Определение селекторов
     get usernameField() { return $('#user-name'); }
     get passwordField() { return $('#password'); }
     get loginButton() { return $('#login-button'); }
-    get errorMessage() { return $('.error-message-container'); }
+    // get errorMessage() { return $('.error-message-container'); }
+    get errorMessage() { return $('h3[data-test="error"]'); }
 
     async open() {
         await browser.url('https://www.saucedemo.com/');
@@ -30,11 +31,27 @@ class LoginPage extends Page {
         console.info('Clicked on Login button');
     }
 
+
     async getErrorMessage() {
-        const messageText = await this.errorMessage.getText();
-        console.info(`Error message displayed: ${messageText}`);
-        return messageText;
+        return await browser.execute(() => {
+            const errorElement = document.querySelector('h3[data-test="error"]');
+            if (errorElement && errorElement._reactRootContainer) {
+                const reactProps = Object.values(errorElement)[1].memoizedProps;
+                return reactProps.children[1];
+            }
+            return errorElement?.textContent || '';
+        });
     }
+    //     const errorElement = await $('h3[data-test="error"]');
+    //     await errorElement.waitForDisplayed({ timeout: 5000 });
+    //     return errorElement.getText();
+    // }
+    
+    // async getErrorMessage() {
+    //     const messageText = await this.errorMessage.getText();
+    //     console.info(`Error message displayed: ${messageText}`);
+    //     return messageText;
+    // }
 }
 
 module.exports = new LoginPage();

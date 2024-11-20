@@ -20,7 +20,9 @@ exports.config = {
     // The path of the spec files will be resolved relative from the directory of
     // of the config file unless it's absolute.
     //
-    specs: ['./tests/*.js'],
+    // specs: ['./tests/*.js'],
+    specs: ['./tests/**/*.test.js'],
+
     // Patterns to exclude.
     exclude: [
         './node_modules/**',
@@ -52,6 +54,7 @@ exports.config = {
     //
     capabilities: [{
         browserName: 'chrome',
+        acceptInsecureCerts: true,
         'goog:chromeOptions': {
                 args: [
                     '--disable-autofill-keyboard-accessory-view', 
@@ -63,12 +66,6 @@ exports.config = {
     }, {
         browserName: 'MicrosoftEdge'
     }],
-
-    // capabilities: [{
-    //     browserName: 'chrome'
-    // }, {
-    //     browserName: 'edge'
-    // }],
 
     //
     // ===================
