@@ -1,4 +1,4 @@
-const Page = require('./page');
+const Page = require('../test/pageobjects/page');
 const { $ } = require('@wdio/globals')
 /* global browser */
 

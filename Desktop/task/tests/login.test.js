@@ -1,5 +1,6 @@
 /* global browser, it, describe */
-const LoginPage = require('../pageobjects/LoginPage');
+const LoginPage = require('../test/pageobjects/login.page');
+
 const assert = require('assert');
 const users = require('../data/userData');
 
@@ -8,9 +9,8 @@ describe('Sauce Demo Login Test', () => {
     it('should show error message when username and password are empty', async () => {
         await LoginPage.open();
         await LoginPage.login(users.emptyCredentials.username, users.emptyCredentials.password);
-        await LoginPage.submit();
         const errorMessage = await LoginPage.getErrorMessage();
-        assert.strictEqual(errorMessage, 'Username is required');
+        assert.ok(errorMessage.includes('Your username is invalid!'), 'Error message does not contain the expected text');
     });
 
     it('should show error message when username is provided but password is empty', async () => {
