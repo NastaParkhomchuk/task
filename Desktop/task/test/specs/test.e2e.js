@@ -1,6 +1,8 @@
 
 const { $ } = require('@wdio/globals')
-const Page = require('./page');
+const Page = require('../pageobjects/page');
+
+// const Page = require('./page');
 
 /**
  * sub page containing specific selectors and methods for a specific page
