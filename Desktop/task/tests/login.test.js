@@ -30,15 +30,6 @@ describe('Sauce Demo Login Test', () => {
         assert.strictEqual(errorMessage, expectedMessage);
     });
     
-    // it('should show error message when username and password are empty', async () => {
-    //     await LoginPage.open();
-    //     await LoginPage.login(users.emptyCredentials.username, users.emptyCredentials.password);
-    //     const errorMessage = await LoginPage.getErrorMessage();
-    //     assert.strictEqual(errorMessage, 'Epic sadface: Username is required');
-
-    //     // assert.ok(errorMessage.includes('Your username is invalid!'), 'Error message does not contain the expected text');
-    // });
-
     it('should show error message when username is provided but password is empty', async () => {
         await LoginPage.open();
         await LoginPage.login(users.usernameOnly.username, users.usernameOnly.password);

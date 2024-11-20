@@ -3,7 +3,6 @@ const { $ } = require('@wdio/globals')
 /* global browser, document */
 
 class LoginPage extends Page {
-    // Определение селекторов
     get usernameField() { return $('#user-name'); }
     get passwordField() { return $('#password'); }
     get loginButton() { return $('#login-button'); }
@@ -42,16 +41,6 @@ class LoginPage extends Page {
             return errorElement?.textContent || '';
         });
     }
-    //     const errorElement = await $('h3[data-test="error"]');
-    //     await errorElement.waitForDisplayed({ timeout: 5000 });
-    //     return errorElement.getText();
-    // }
-    
-    // async getErrorMessage() {
-    //     const messageText = await this.errorMessage.getText();
-    //     console.info(`Error message displayed: ${messageText}`);
-    //     return messageText;
-    // }
 }
 
 module.exports = new LoginPage();
