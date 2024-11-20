@@ -1,5 +1,5 @@
 /* global browser, it, describe */
-const LoginPage = require('../test/pageobjects/login.page');
+const LoginPage = require('../pages/LoginPage');
 
 const assert = require('assert');
 const users = require('../data/userData');
